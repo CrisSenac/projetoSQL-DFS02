@@ -17,3 +17,14 @@ telefone char(9)
 show tables;
 
 desc tbFuncionarios;
+
+
+Tipos de registros
+
+Caracter = 'Senac'
+Numérico 
+	inteiro = 10
+	real = 20.35
+Data = '2024-05-16'
+Hora = '14:06:45'
+Booleano = true or false
