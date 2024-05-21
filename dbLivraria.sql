@@ -20,7 +20,7 @@ primary key(idAutor)
 create table tbCliente(
 idCliente int not null auto_increment,
 nome varchar(100),
-telefone char(9) unique,
+telefone char(10) unique,
 primary key(idCliente)
 );
 
@@ -96,6 +96,7 @@ insert into tbLivro(titulo,preco,estoque,idGenero)values('O Auto da Compadecida'
 insert into tbLivro(titulo,preco,estoque,idGenero)values('Como eu era antes de voce',29.45,2,6);
 insert into tbLivro(titulo,preco,estoque,idGenero)values('Historia do cinema mundial',86.00,3,7);
 
+
 insert into tbVenda(data,total,idCliente)values('2024-05-16',150.00,2);
 insert into tbVenda(data,total,idCliente)values('2024-05-12',52.47,1);
 insert into tbVenda(data,total,idCliente)values('2024-05-16',75.50,3);
@@ -117,3 +118,28 @@ select * from tbLivro;
 select * from tbVenda;
 select * from tbItensVenda;
 select * from tbEscreve;
+
+-- Alterando registros das tabelas
+update tbCliente set nome = 'Antonina da Silva' where idCliente=2;
+update tbCliente set nome = 'Patricio Antunes de Sousa',
+	telefone = '98524-7458' where idCliente=1;
+
+select * from tbCliente;
+
+
+update tbLivro set titulo = 'Harry Potter e a Pedra Filosofal', preco = 51.20, estoque = 5, idGenero = 6 
+	where idLivro = 1;
+update tbLivro set titulo = 'Como eu era antes de voce', preco = 45.99, estoque = 10, idGenero = 1
+	where idLivro = 6;
+select * from tbLivro;
+
+-- Apagando o registro da tabela
+delete from tbItensVenda where idVenda=2;
+
+delete from tbVenda where idCliente=1;
+
+delete from tbCliente where idCliente=1;
+
+select * from tbItensVenda;
+select * from tbVenda;
+select * from tbCliente;
