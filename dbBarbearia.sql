@@ -25,8 +25,8 @@ select * from tbProdutos;
 select codProd as 'Código', descricao as 'Descrição', marca as 'Marca', preco as 'Preço' from tbProdutos;
 
 -- Colunas virtuais
-select codProd,descricao,'promoção' as 'promo',marca,preco, 
-	from tbProdutos;
+-- select codProd,descricao,'promoção' as 'promo',marca,preco, 
+	--from tbProdutos;
 
 select codProd as 'Código', descricao as 'Descrição', marca as 'Marca','Sim' as 'Vendido', preco as 'Preço' from tbProdutos;
 
@@ -35,3 +35,7 @@ select codProd as 'Código', descricao as 'Descrição', marca as 'Marca','Sim' 
 update tbProdutos set preco = preco * 1.10 where codProd=3;
 
 select * from tbProdutos;
+
+select preco * 0.90 as 'Desconto' from tbProdutos;
+
+update tbProdutos set preco = preco * 0.20 where codProd=1;
