@@ -8,7 +8,7 @@ CODIGO INT,
 NOME VARCHAR(50), 
 TIPO VARCHAR(25), 
 QUANTIDADE INT, 
-VALOR DECIMAL(10,2) 
+VALOR DECIMAL(10,2) 	
 );
 INSERT INTO TBPRODUTOS ( CODIGO, NOME, TIPO, QUANTIDADE, VALOR ) VALUES ( 1,'IMPRESSORA', 'INFORMATICA', 200, 600.00 ); 
 INSERT INTO TBPRODUTOS ( CODIGO, NOME, TIPO, QUANTIDADE, VALOR ) VALUES ( 2,'CAMERA DIGITAL', 'DIGITAIS', 300, 400.00 ); 
@@ -27,3 +27,11 @@ select * from TBPRODUTOS;
 
 -- Para os campos não se repetirem
 select distinct tipo from TBPRODUTOS order by Tipo;
+
+select * from tbProdutos where valor >= 600;
+
+select valor as 'valor' from tbProdutos where valor >= 600;
+
+-- Busca por código
+
+select * from tbProdutos where codProd = 1;
