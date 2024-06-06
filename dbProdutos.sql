@@ -35,3 +35,43 @@ select valor as 'valor' from tbProdutos where valor >= 600;
 -- Busca por código
 
 select * from tbProdutos where codProd = 1;
+
+-- Busca por nome 
+
+select * from tbProdutos where tipo like 'i%'; --(buscar tudo o que começa com i)
+select * from tbProdutos where tipo like '%s'; --(buscar tudo o que termina com s)
+
+select * from tbProdutos where tipo like '%o%' and valor <= 600;
+
+select * from tbProdutos where tipo like '%o%' or valor <= 600;
+
+select * from tbProdutos where tipo = 'INFORMATICA' or  tipo = 'TELEFONE';
+
+select * from tbProdutos where tipo in('INFORMATICA','TELEFONE');
+
+ select * from tbProdutos where not tipo in('INFORMATICA','TELEFONE'); --(aparece todos menos os entre parenteses)
+
+ select * from tbProdutos where valor >=100 and valor <=300;
+
+ select * from tbProdutos where valor not between 100 and 300;
+
+ -- 1. Aumente em 12% o valor dos produtos cujos nomes iniciem com a letra 'F' 
+select * from tbProdutos where nome like 'f%'; 
+update tbProdutos set valor = valor * 1.12 where CODIGO=6;
+
+-- 2. Aumentar em 50 unidades todos os produtos cujo valor seja maior que 400 e inferior a 600 
+update tbProdutos set QUANTIDADE = QUANTIDADE +50 where valor between 400 and 600;
+select * from tbProdutos where valor between 400 and 600;
+
+--3. Aplicar um desconto de 50% (*0.5) em todos os produtos que as unidades de estoque sejam maiores que 300
+update tbProdutos set valor = valor * 0.5 where QUANTIDADE > 300;
+select * from tbProdutos where QUANTIDADE > 300;
+
+--4. Exiba o produto de CODIGO = 4 
+select * from tbProdutos where CODIGO=4;
+
+--5. Exibir todos os produtos que não tenham a letra 'Y' 
+select * from tbProdutos where nome not like '%y%';
+
+--6. Exibir todos os produtos que se iniciem com nome 'MO' e tenham como tipo as letras 'MA' 
+select * from tbProdutos where nome like 'mo%' and tipo like '%ma%';
