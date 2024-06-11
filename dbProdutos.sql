@@ -75,3 +75,20 @@ select * from tbProdutos where nome not like '%y%';
 
 --6. Exibir todos os produtos que se iniciem com nome 'MO' e tenham como tipo as letras 'MA' 
 select * from tbProdutos where nome like 'mo%' and tipo like '%ma%';
+
+
+--select * from tbprodutos limit 5 order by valor desc;
+--select * from tbprodutos order by valor limit 5;
+
+--1. Escreva uma consulta que exiba os dados da tabela PRODUTOS na forma crescente pelo campo NOME. 
+select * from tbprodutos order by nome asc;
+
+--2. Escreva uma consulta que exiba o NOME dos produtos ordenado de forma decrescente e o VALOR de forma crescente. 
+select nome, valor from tbProdutos order by nome desc , valor asc;
+
+--3. Escreva uma consulta que exiba os três produtos mais caros. 
+select * from tbProdutos order by valor desc limit 3;
+
+--4. Escreva uma consulta que exiba o VALOR do produto mais barato. 
+select * from tbProdutos order by valor desc limit 1;
+

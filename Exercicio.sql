@@ -35,4 +35,3 @@ select codfunc as 'Código', nome as 'Nome', cpf as 'CPF', email as 'E-mail', te
 endereco as 'Endereço', numero as 'Número', cep as 'CEP', bairro as 'Bairro', cidade as 'Cidade', estado as 'Estado' from tbFuncionarios;
 
 desc tbFuncionarios;
-
