@@ -160,3 +160,4 @@ INSERT INTO tbCategorias(nomeCat) VALUES ('Rock Nacional');
 insert into tbEstados(siglaEst,nomeEst)values('SP','São Paulo');
 insert into tbEstados(siglaEst,nomeEst)values('MG','Minas Gerais');
 insert into tbEstados(siglaEst,nomeEst)values('RJ','Rio de Janeiro');
+
