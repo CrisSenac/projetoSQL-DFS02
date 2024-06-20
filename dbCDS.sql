@@ -1,4 +1,4 @@
-drop database if exists dbCDS;
+drop database dbCDS;
 
 create database dbCDS;
 
@@ -96,6 +96,14 @@ foreign key(codCli) references tbClientes(codCli),
 foreign key(codFunc) references tbFuncionarios(codFunc)
 );
 
+create table tbTitulosArtista(
+codTit int not null,
+codArt int not null,
+primary key (codTit, codArt),
+foreign key(codArt) references tbArtistas(codArt),
+foreign key(codTit) references tbTitulos(codTit)
+);
+
 create table tbTitulosPedido(
 numPed int not null,
 codTit int not null,
@@ -104,14 +112,6 @@ qtdCd int not null,
 valCd decimal(9,2) not null,
 primary key (numPed, codTit),
 foreign key(numPed) references tbPedidos(numPed),
-foreign key(codTit) references tbTitulos(codTit)
-);
-
-create table tbTitulosArtista(
-codTit int not null,
-codArt int not null,
-primary key (codTit, codArt),
-foreign key(codArt) references tbArtistas(codArt),
 foreign key(codTit) references tbTitulos(codTit)
 );
 
@@ -126,8 +126,8 @@ desc tbFuncionarios;
 desc tbDependentes;
 desc tbTitulos;
 desc tbPedidos;
-desc tbTitulosPedido;
 desc tbTitulosArtista;
+desc tbTitulosPedido;
 
 insert into tbArtistas(nomeArt) values ('Marisa Monte');
 insert into tbArtistas(nomeArt) values ('Gilberto Gil');
@@ -211,16 +211,16 @@ insert into tbPedidos(codCli,codFunc,datPed,valPed)values(8,2,'02/03/03',50.00);
 insert into tbPedidos(codCli,codFunc,datPed,valPed)values(2,2,'02/03/03',2000.00);
 insert into tbPedidos(codCli,codFunc,datPed,valPed)values(7,1,'02/03/03',3000.00);
 
-insert into tbTitulosArtista(codTit,codArt)values('1');
-insert into tbTitulosArtista(codTit,codArt)values('2');
-insert into tbTitulosArtista(codTit,codArt)values('2');
-insert into tbTitulosArtista(codTit,codArt)values('2');
-insert into tbTitulosArtista(codTit,codArt)values('3');
-insert into tbTitulosArtista(codTit,codArt)values('4');
-insert into tbTitulosArtista(codTit,codArt)values('4');
-insert into tbTitulosArtista(codTit,codArt)values('5');
-insert into tbTitulosArtista(codTit,codArt)values('6');
-insert into tbTitulosArtista(codTit,codArt)values('7');
+insert into tbTitulosArtista(codTit,codArt)values(1,'1');
+insert into tbTitulosArtista(codTit,codArt)values(2,'2');
+insert into tbTitulosArtista(codTit,codArt)values(3,'2');
+insert into tbTitulosArtista(codTit,codArt)values(4,'2');
+insert into tbTitulosArtista(codTit,codArt)values(5,'3');
+insert into tbTitulosArtista(codTit,codArt)values(6,'4');
+insert into tbTitulosArtista(codTit,codArt)values(7,'4');
+insert into tbTitulosArtista(codTit,codArt)values(8,'5');
+insert into tbTitulosArtista(codTit,codArt)values(9,'6');
+insert into tbTitulosArtista(codTit,codArt)values(10,'7');
 
 insert into tbTitulosPedido(numPed,codTit,qtdTit,valCd)values(1,1,2,30.00);
 insert into tbTitulosPedido(numPed,codTit,qtdTit,valCd)values(1,2,3,20.00);
@@ -247,5 +247,20 @@ select * from tbFuncionarios;
 select * from tbDependentes;
 select * from tbTitulos;
 select * from tbPedidos;
-select * from tbTitulosPedido;
 select * from tbTitulosArtista;
+select * from tbTitulosPedido;
+
+--Exercícios 88/89
+
+-- 1. Selecione o nome dos CDs e o nome da gravadora de cada CD. 
+select t.nomeCd, g.nomeGrav from tbTitulos t inner join tbGravadoras g on t.codGrav = g.codGrav;
+
+-- 2. Selecione o nome dos CDs e o nome da categoria de cada CD. 
+select t.nomeCd, c.nomeCat from tbTitulos t inner join tbCategorias c on t.codCat = c.codCat;
+
+-- 3. Selecione o nome dos CDs, o nome das gravadoras de cada CD e o nome da categoria de cada CD. 
+select Tit.nomeCd 'CD', Grav.nomeGrav 'Grav', Cat.nomeCat 'Cat' from tbTitulos as Tit 
+inner join tbGravadoras as Grav on Tit.codGrav = Grav.codGrav 
+inner join tbCategorias as Cat on Tit.codGrav = Cat.codCat;
+
+-- 4. Selecione o nome dos clientes e os títulos dos CDs vendidos em cada pedido que o cliente fez
