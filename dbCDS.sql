@@ -264,3 +264,6 @@ inner join tbGravadoras as Grav on Tit.codGrav = Grav.codGrav
 inner join tbCategorias as Cat on Tit.codGrav = Cat.codCat;
 
 -- 4. Selecione o nome dos clientes e os títulos dos CDs vendidos em cada pedido que o cliente fez
+select nom.nomeCli, tit.nomeCd from tbClientes 
+inner join tbPedidos on cli.codCli = ped.codCli 
+inner join tbTitulosPedido on ped.numPed join tbTitulos on tp.codTit = tit.codTit;
