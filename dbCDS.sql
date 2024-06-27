@@ -160,13 +160,13 @@ insert into tbCidades(siglaEst, nomeCid) values ('SP', 'Araraquara');
 insert into tbCidades(siglaEst, nomeCid) values ('MG', 'Ouro Preto');
 insert into tbCidades(siglaEst, nomeCid) values ('ES', 'Cachoeira do Itapemirim');
 
-insert into tbClientes(codCid, nomeCli, endCli, rendaCli, sexoCli) values (1, 'José Nogueira', 'Rua A', 1500.00, 'M');
-insert into tbClientes(codCid, nomeCli, endCli, rendaCli, sexoCli) values (1, 'Ângelo Pereira', 'Rua B', 2000.00, 'M');
-insert into tbClientes(codCid, nomeCli, endCli, rendaCli, sexoCli) values (1, 'Além Mar Paranhos', 'Rua C', 1500.00, 'M');
+insert into tbClientes(codCid, nomeCli, endCli, rendaCli, sexoCli) values (1, 'Jose Nogueira', 'Rua A', 1500.00, 'M');
+insert into tbClientes(codCid, nomeCli, endCli, rendaCli, sexoCli) values (1, 'Angelo Pereira', 'Rua B', 2000.00, 'M');
+insert into tbClientes(codCid, nomeCli, endCli, rendaCli, sexoCli) values (1, 'Alem Mar Paranhos', 'Rua C', 1500.00, 'M');
 insert into tbClientes(codCid, nomeCli, endCli, rendaCli, sexoCli) values (1, 'Catarina Souza', 'Rua D', 892.00, 'F');
 insert into tbClientes(codCid, nomeCli, endCli, rendaCli, sexoCli) values (1, 'Vagner Costa', 'Rua E', 950.00, 'M');
 insert into tbClientes(codCid, nomeCli, endCli, rendaCli, sexoCli) values (1, 'Antenor da Costa', 'Rua F', 1582.00, 'M');
-insert into tbClientes(codCid, nomeCli, endCli, rendaCli, sexoCli) values (1, 'Maria Amélia de Souza', 'Rua G', 1152.00, 'F');
+insert into tbClientes(codCid, nomeCli, endCli, rendaCli, sexoCli) values (1, 'Maria Amelia de Souza', 'Rua G', 1152.00, 'F');
 insert into tbClientes(codCid, nomeCli, endCli, rendaCli, sexoCli) values (1, 'Paulo Roberto Silva', 'Rua H', 3250.00, 'M');
 insert into tbClientes(codCid, nomeCli, endCli, rendaCli, sexoCli) values (1, 'Fatima Souza', 'Rua I', 1632.00, 'F');
 insert into tbClientes(codCid, nomeCli, endCli, rendaCli, sexoCli) values (1, 'Joel da Rocha', 'Rua J',2000.00,'M');
@@ -264,6 +264,23 @@ inner join tbGravadoras as Grav on Tit.codGrav = Grav.codGrav
 inner join tbCategorias as Cat on Tit.codGrav = Cat.codCat;
 
 -- 4. Selecione o nome dos clientes e os títulos dos CDs vendidos em cada pedido que o cliente fez
-select nom.nomeCli, tit.nomeCd from tbClientes 
-inner join tbPedidos on cli.codCli = ped.codCli 
-inner join tbTitulosPedido on ped.numPed join tbTitulos on tp.codTit = tit.codTit;
+select cli.nomeCli as Cli, tit.nomeCd as Tit from tbClientes as Cli
+inner join tbPedidos as Ped on cli.codCli = ped.codCli
+inner join tbTitulosPedido as Tp on ped.numPed = tp.numPed
+inner join tbTitulos as Tit on tp.codTit = tit.codTit;
+
+-- 5. Selecione o nome do funcionário, número, data e valor dos pedidos que este funcionário registrou, além do nome do cliente que está fazendo o pedido. 
+select func.nomeFunc, ped.numPed, ped.datPed, ped.valPed, cli.nomeCli from tbPedidos as Ped
+inner join tbFuncionarios as func on ped.codFunc = func.codFunc
+inner join tbClientes as cli on cli.codCli = ped.codCli;
+
+-- 6. Selecione o nome dos funcionários e o nome de todos os dependentes de cada funcionário. 
+select func.codFunc, dep.nomeDep from tbDependentes as Dep
+inner join tbFuncionarios as Func on 
+
+
+
+--9 
+select cli.nome, conj.nome, numero, valor, from tbPedidos as ped numPed
+inner join tbClientes as cli on ped.codcli = cli.codCli
+left join tbConjuge as conj on ped.numped = conj.codConj
